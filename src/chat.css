@@ -1,0 +1,53 @@
+.message-bubble {
+    padding: 0 30px 10px 10px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    overflow: hidden;
+}
+.message-bubble .back {
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    background-color: white;
+    padding: 8px 8px 8px 8px;
+    float: left;
+    max-width: 100%;
+    line-height: 0;
+}
+.message-bubble .author {
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: bold;
+}
+.message-bubble .time {
+    float: right;
+    font-size: 12px;
+    line-height: 18px;
+    margin-left: 10px;
+    color: #888888;
+}
+.message-bubble.send .time {
+    color: #444444;
+}
+.message-bubble .content {
+    margin: 5px 0 3px 0;
+    font-size: 16px;
+    word-wrap: break-word;
+    -word-break: break-all;
+    line-height: 1.5;
+}
+.message-bubble .back:after {
+    content: "";
+    position: absolute;
+    bottom: 16px;
+    border-style: solid;
+    border-color: transparent white;
+    border-width: 5px 10px 5px 0;
+    display: block;
+    width: 0;
+    left: 2px;
+}

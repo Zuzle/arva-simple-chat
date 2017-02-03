@@ -11,3 +11,4 @@ res/icons
 res/screens
 store
 incrementBuildNum.js
+npm-debug.log

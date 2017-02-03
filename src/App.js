@@ -7,13 +7,16 @@ import {provide}                    from 'arva-js/utils/di/Decorators.js';
 import {Injection}                  from 'arva-js/utils/Injection.js';
 import {DataSource}                 from 'arva-js/data/DataSource.js';
 import {App as ArvaApp}             from 'arva-js/core/App.js';
+import {Router}                     from 'arva-js/core/Router.js';
+import {ArvaRouter}                 from 'arva-js/routers/ArvaRouter.js';
 
 /* Importing CSS in jspm bundled builds injects them into the DOM automagically */
 import './famous.css';
 import './fonts.css';
+import './chat.css';
 
 /* Here we import all controllers we want to use in the app */
-import {HomeController}             from './controllers/HomeController.js';
+import {ChatController}             from './controllers/ChatController.js';
 
 export class App extends ArvaApp {
 
@@ -21,19 +24,25 @@ export class App extends ArvaApp {
     static references = {};
 
     /* The controllers that will be used in the app. */
-    static controllers = [HomeController];
+    static controllers = [ChatController];
 
 
     /* Define which DataSource to use */
     static defaultDataSource() {
         /* Firebase initialization */
         firebase.initializeApp({
-            apiKey: '<api-key>',
-            authDomain: '<subdomain>.firebaseapp.com',
-            databaseURL: 'https://<subdomain>.firebaseio.com',
-            storageBucket: '<subdomain>.appspot.com'
+            apiKey: 'AIzaSyD9hZckVZeB2zxsAaHGug5TR_QeFd6cG_E',
+            authDomain: 'arva-simple-chat.firebaseapp.com',
+            databaseURL: 'https://arva-simple-chat.firebaseio.com',
+            storageBucket: 'arva-simple-chat.appspot.com'
         });
         return new FirebaseDataSource('/', {});
+    }
+
+    static router() {
+        let router = new ArvaRouter();
+        router.setDefault('Chat', 'Index');
+        return router;
     }
 
     /**
@@ -43,6 +52,8 @@ export class App extends ArvaApp {
     static initialize(){
         /* Change initial route, view animation or something needed before we start */
         provide(DataSource)(App.defaultDataSource);
+        provide(Router)(App.router);
+
         this.start();
     }
 
